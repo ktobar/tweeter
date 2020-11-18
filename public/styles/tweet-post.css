@@ -1,0 +1,71 @@
+article {
+  border: 5px solid black;
+  margin: auto;
+  width: 90%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  opacity: 0.8;
+}
+
+#tweet:hover {
+  opacity: 1.0;
+  box-shadow: 11px 11px gray;
+}
+
+#tweet:hover .handle {
+  opacity: 1.0;
+}
+
+
+.posterInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatarName {
+  display: flex;
+  align-items: center;
+}
+
+.handle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  opacity: 0;
+}
+
+.postVal {
+  margin: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.postFooter {
+  border-top: solid 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.postAvatar {
+  margin: 10px;
+}
+
+.postDate {
+  margin: 10px;
+  padding-top: 10px;
+}
+
+.postIcon {
+  margin-right: 10px;
+
+}
+
+.icon {
+  margin: 5px;
+}

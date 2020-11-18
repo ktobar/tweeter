@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweet-post.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,15 +36,15 @@
         <span class="downArrow"><i class="fas fa-angle-double-down"></i></span>
       </div>
     </nav>
-    <header>
+
+    <header class="curProfile">
       <div class= "avatar">
           <img src="/images/profile-hex.png"> 
       </div>
-      <br>
       <div class= "name">
           <h2><span class="first">Amy</span> Mansell</h2>
       </div>
-  </header>
+    </header>
   
 
     <!-- Page-specific (main) content here -->
@@ -63,5 +64,33 @@
       </section>
     </main>
 
+    <article id="tweet">
+      <header class="posterInfo">
+        <div class="avatarName">
+          <div class="postAvatar">
+              <img src="https://i.imgur.com/nlhLi3I.png"> 
+          </div>
+          <div>
+              Billy Bob Jr
+          </div>
+        </div>
+        <span class="handle">
+          @billybob
+        </span>
+      </header>
+      <span class="postVal">
+        Random text but a also random thing to fill up space in the confusion of coding CSS.
+      </span>
+      <footer class="postFooter">
+        <div class="postDate">
+          10 days ago
+        </div>
+        <div class="postIcons">
+          <span class="icon"><i class="fas fa-flag"></i></span>
+          <span class="icon"><i class="fas fa-retweet"></i></span>
+          <span class="icon"><i class="fas fa-heart"></i></span>
+        </div>
+      </footer>
+    </article>
   </body>
 </html>
