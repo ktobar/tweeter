@@ -21,7 +21,7 @@ const createTweetElement = (post)=> {
       </span>
     </header>
     <span class="postVal">
-      ${post.content.text}
+      ${escape(post.content.text)}
     </span>
     <footer class="postFooter">
       <div class="postDate">
@@ -42,7 +42,7 @@ const createTweetElement = (post)=> {
 const renderTweets = function(tweets) {
   for (const post of tweets) {
     const newPost = createTweetElement(post)
-    $('section.posts').append(newPost)
+    $('section.posts').prepend(newPost)
   }
 }
 
@@ -57,25 +57,46 @@ const loadtweet = (callback)=> {
   })
 }
 
+const loadLatestTweet = ()=> {
+  $.ajax({
+    url: "/tweets",
+    method: "GET",
+  })
+  .then((res) => {
+    const posts = Object.values(res).pop();
+    const newPost = createTweetElement(posts);
+    $('section.posts').prepend(newPost)
+  })
+
+}
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+} 
+
 $(document).ready(() => {
   $('form').on('submit', (event => {
     
     event.preventDefault();
-
+    $('.errorArea').slideUp()
     const text = $("#tweet-text").val();
 
-      if(text === null || text === '') {
-        alert('input is empty')
-      } else if(text.length > 140) {
-        alert('input is greater than 140 characters')
-      } else {
-        $.ajax({
-          url: "/tweets",
-          method: "POST",
-          data: $('form').serialize()
-        })
-        .then((res) => console.log(res))
-      }
+    if(text === null || text === '') {
+      $('.errorArea').hide().html('<p class="error"><i class="fas fa-exclamation-triangle"></i> Input field is empty. <i class="fas fa-exclamation-triangle"></i></p>').slideDown()
+    } else if(text.length > 140) {
+      $('.errorArea').hide().html('<p class="error"><i class="fas fa-exclamation-triangle"></i> Input needs to be less than 140 characters. <i class="fas fa-exclamation-triangle"></i></p>').slideDown()
+    } else {
+      $.ajax({
+        url: "/tweets",
+        method: "POST",
+        data: $('form').serialize()
+      })
+      .then(
+        $('.errorArea').slideUp(),
+        loadLatestTweet()
+      )
+    }
 
   }))
   loadtweet()

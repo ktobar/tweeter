@@ -46,3 +46,12 @@
 .humming-about-text{
   font-weight: 600;
 }
+
+.error {
+  padding: 20px;
+  border-color: red;
+  border: solid;
+  color: red;
+  font-weight: 600;
+  
+}
