@@ -7,6 +7,8 @@ article {
   flex-direction: column;
   padding-bottom: 10px;
   opacity: 0.8;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #tweet:hover {
@@ -17,7 +19,6 @@ article {
 #tweet:hover .handle {
   opacity: 1.0;
 }
-
 
 .posterInfo {
   display: flex;

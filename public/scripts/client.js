@@ -5,7 +5,6 @@
  */
 
 const createTweetElement = (post)=> {
-  console.log(post.user)
   const $tweet = $(`
   <article id="tweet">
     <header class="posterInfo">
@@ -60,14 +59,23 @@ const loadtweet = (callback)=> {
 
 $(document).ready(() => {
   $('form').on('submit', (event => {
+    
     event.preventDefault();
 
-    $.ajax({
-      url: "/tweets",
-      method: "POST",
-      data: $('form').serialize()
-    })
-    .then((res) => console.log(res))
+    const text = $("#tweet-text").val();
+
+      if(text === null || text === '') {
+        alert('input is empty')
+      } else if(text.length > 140) {
+        alert('input is greater than 140 characters')
+      } else {
+        $.ajax({
+          url: "/tweets",
+          method: "POST",
+          data: $('form').serialize()
+        })
+        .then((res) => console.log(res))
+      }
 
   }))
   loadtweet()
