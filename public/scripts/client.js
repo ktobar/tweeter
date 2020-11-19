@@ -4,42 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const postData = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Descartes Double",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-  
-]
-
 const createTweetElement = (post)=> {
   console.log(post.user)
   const $tweet = $(`
@@ -83,6 +47,17 @@ const renderTweets = function(tweets) {
   }
 }
 
+const loadtweet = (callback)=> {
+  $.ajax({
+    url: "/tweets",
+    method: "GET",
+  })
+  .then((res)=>{
+    const posts = Object.values(res)
+    renderTweets(res)
+  })
+}
+
 $(document).ready(() => {
   $('form').on('submit', (event => {
     event.preventDefault();
@@ -94,13 +69,6 @@ $(document).ready(() => {
     })
     .then((res) => console.log(res))
 
-    $.ajax({
-      url: "/tweets",
-      method: "GET",
-    })
-
   }))
-
-  renderTweets(postData);
-
+  loadtweet()
 });
