@@ -24,6 +24,8 @@ nav .logo {
 }
 
 .downArrow{
+  background-color: #dfa33d;
+  border: none;
   color: red;
 }
 
@@ -31,5 +33,9 @@ nav .logo {
   nav {
     background-color: #4056A1;
     background-image: none;
+  }
+
+  .downArrow {
+    background-color: #4056A1;
   }
 }
