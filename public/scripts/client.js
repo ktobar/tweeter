@@ -4,9 +4,9 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+//generate html with post data passed into function
 const createTweetElement = (post)=> {
-  
-  const createAt = new Date(post.created_at);
+  //convert milliseconds to days from tweet post
   const timeNow = Date.now();
   const timelapse = timeNow - post.created_at;
   const oneDayMs = 1000 * 60 * 60 * 24;
@@ -45,7 +45,7 @@ const createTweetElement = (post)=> {
 
   return $tweet;
 };
-
+// prepends post to html
 const renderTweets = function(tweets) {
   for (const post of tweets) {
     const newPost = createTweetElement(post);
@@ -58,10 +58,10 @@ const loadtweet = ()=> {
     url: "/tweets",
     method: "GET",
   }).then((res)=>{
-    renderTweets(res)
-  })
-}
-
+    renderTweets(res);
+  });
+};
+// prepends latest post from recent submit
 const loadLatestTweet = ()=> {
   $.ajax({
     url: "/tweets",
@@ -69,40 +69,38 @@ const loadLatestTweet = ()=> {
   }).then((res) => {
     const posts = Object.values(res).pop();
     const newPost = createTweetElement(posts);
-    $('section.posts').prepend(newPost)
-  })
-}
-
+    $('section.posts').prepend(newPost);
+  });
+};
+// prevents Cross-Site Scripting
 const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-} 
-
+};
+// Prevents default form action and uses ajax to add tweet post without refresh of pages
 $(document).ready(() => {
   $('form').on('submit', (event => {
     
     event.preventDefault();
-    $('.errorArea').slideUp()
+    $('.errorArea').slideUp();
     const text = $("#tweet-text").val();
 
-    if(text === null || text === '') {
-      $('.errorArea').hide().html('<p class="error"><i class="fas fa-exclamation-triangle"></i> Input field is empty. <i class="fas fa-exclamation-triangle"></i></p>').slideDown()
-    } else if(text.length > 140) {
-      $('.errorArea').hide().html('<p class="error"><i class="fas fa-exclamation-triangle"></i> Input needs to be less than 140 characters. <i class="fas fa-exclamation-triangle"></i></p>').slideDown()
+    if (text === null || text === '') {
+      $('.errorArea').hide().html('<p class="error"><i class="fas fa-exclamation-triangle"></i> Input field is empty. <i class="fas fa-exclamation-triangle"></i></p>').slideDown();
+    } else if (text.length > 140) {
+      $('.errorArea').hide().html('<p class="error"><i class="fas fa-exclamation-triangle"></i> Input needs to be less than 140 characters. <i class="fas fa-exclamation-triangle"></i></p>').slideDown();
     } else {
       $.ajax({
         url: "/tweets",
         method: "POST",
         data: $('form').serialize()
-      })
-      .then(
+      }).then(
         $('.errorArea').slideUp(),
         loadLatestTweet(),
         $('.tweet-form')[0].reset()
-      )
+      );
     }
-
-  }))
-  loadtweet()
+  }));
+  loadtweet();
 });

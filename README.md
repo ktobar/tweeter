@@ -15,3 +15,8 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+## Screenshots
+
+!["Screenshot of tweet compose box"](https://github.com/ktobar/tweeter/blob/master/doc/tweer-post.png)
+!["Screenshot of mobile view"](https://github.com/ktobar/tweeter/blob/master/doc/mobile-view.png)
