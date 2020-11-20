@@ -3,6 +3,7 @@
   <head>
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
 
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
@@ -46,26 +47,29 @@
       </div>
     </header>
   
-
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <!-- <h2>Compose Tweet</h2> -->
-        <div class="errorArea"></div>
-        <form class="tweet-form" method="POST" action="/tweets" Content-Type: application/x-www-form-urlencoded>
-          <footer class="tweet-input">
-            <label for="tweet-text"><span class="humming-about-text">What are you humming about?</span></label>
-            <input name="text" id="tweet-text"></input>
-          </footer>
-          <div class="submit-counter">
-            <button class="tweet-button" type="submit">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
-          </div>
-        </form>
-      </section>
+    <main class= "superContainer">
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class="new-tweet">
+          <!-- <h2>Compose Tweet</h2> -->
+           <!-- -->
+          <div class="errorArea"></div>
+          
+          <form class="tweet-form" method="POST" action="/tweets" Content-Type: application/x-www-form-urlencoded>
+            <footer class="tweet-input">
+              <label for="tweet-text"><span class="humming-about-text">What are you humming about?</span></label>
+              <textarea name="text" id="tweet-text"></textarea>
+            </footer>
+            <div class="submit-counter">
+              <button class="tweet-button" type="submit">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </div>
+          </form>
+        </section>
+      </main>
+        <section class="posts">
+          <!-- posts goes here -->
+        </section>
     </main>
-      <section class="posts">
-        <!-- posts goes here -->
-      </section>
   </body>
 </html>

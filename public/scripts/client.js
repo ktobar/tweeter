@@ -5,6 +5,13 @@
  */
 
 const createTweetElement = (post)=> {
+  
+  const createAt = new Date(post.created_at);
+  const timeNow = Date.now();
+  const timelapse = timeNow - post.created_at;
+  const oneDayMs = 1000 * 60 * 60 * 24;
+  const daysSince = Math.floor(timelapse / oneDayMs);
+  
   const $tweet = $(`
   <article id="tweet">
     <header class="posterInfo">
@@ -25,7 +32,7 @@ const createTweetElement = (post)=> {
     </span>
     <footer class="postFooter">
       <div class="postDate">
-        ${post.created_at}
+        ${daysSince} days ago
       </div>
       <div class="postIcons">
         <span class="icon1"><i class="fas fa-flag"></i></span>
@@ -37,22 +44,20 @@ const createTweetElement = (post)=> {
   );
 
   return $tweet;
-}
+};
 
 const renderTweets = function(tweets) {
   for (const post of tweets) {
-    const newPost = createTweetElement(post)
-    $('section.posts').prepend(newPost)
+    const newPost = createTweetElement(post);
+    $('section.posts').prepend(newPost);
   }
-}
+};
 
-const loadtweet = (callback)=> {
+const loadtweet = ()=> {
   $.ajax({
     url: "/tweets",
     method: "GET",
-  })
-  .then((res)=>{
-    const posts = Object.values(res)
+  }).then((res)=>{
     renderTweets(res)
   })
 }
@@ -61,14 +66,13 @@ const loadLatestTweet = ()=> {
   $.ajax({
     url: "/tweets",
     method: "GET",
-  })
-  .then((res) => {
+  }).then((res) => {
     const posts = Object.values(res).pop();
     const newPost = createTweetElement(posts);
     $('section.posts').prepend(newPost)
   })
-
 }
+
 const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
@@ -94,7 +98,8 @@ $(document).ready(() => {
       })
       .then(
         $('.errorArea').slideUp(),
-        loadLatestTweet()
+        loadLatestTweet(),
+        $('.tweet-form')[0].reset()
       )
     }
 

@@ -1,7 +1,9 @@
 nav {
   display: flex;
   height: 120px;
-  background-color: #4056A1;
+  /* background-color: #4056A1; */
+  background-color: #dfa33d;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
   color: #ffffff;
   justify-content: space-between ;
   padding: 1.5em;
@@ -23,4 +25,11 @@ nav .logo {
 
 .downArrow{
   color: red;
+}
+
+@media only screen and (min-width: 900px) {
+  nav {
+    background-color: #4056A1;
+    background-image: none;
+  }
 }

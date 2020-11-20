@@ -1,5 +1,5 @@
 .curProfile {
-  background-color: #ffc157;
+  background-color: #dfa33d;
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
   display: flex;
   height: 400px;
@@ -20,3 +20,21 @@
 .name h2{
   font-weight: 100;
 }
+
+@media only screen and (min-width: 900px) {
+  .curProfile {
+    background-color: #dfa33d;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    display: flex;
+    height: 400px;
+    width: 600px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 260px;
+    margin-left: 70px;
+    margin-right: 70px;
+    flex-shrink: 3;
+  }
+}
+
